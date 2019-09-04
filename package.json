@@ -1,0 +1,30 @@
+{
+  "name": "xperience-morph-backend",
+  "version": "1.0.0",
+  "description": "xperience-morph",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon index.js",
+    "git-sc": "git add . && git commit -am \".\" && git push origin master"
+  },
+  "repository": ".",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^15.1.1",
+    "axios": "^0.19.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "config": "^3.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.9",
+    "nodemon": "^1.19.1"
+  }
+}
