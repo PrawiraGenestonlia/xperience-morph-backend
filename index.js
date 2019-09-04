@@ -10,8 +10,6 @@ const dotenv = require('dotenv').config();
 //routes
 const morphRoute = require("./routes/morph.route");
 
-
-
 //use config module to get the privatekey, if no private key set, end the application
 if (!config.get("myprivatekey")) {
   console.error("FATAL ERROR: myprivatekey is not defined.");
