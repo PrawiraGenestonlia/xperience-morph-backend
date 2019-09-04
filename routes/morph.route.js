@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const formidable = require('formidable');
 const util = require('util')
 
 async function generateMorph(file1, file2) {
@@ -12,10 +12,17 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/combine"), async (req, res) => {
-  var first_image = req.body.first_image;
-  var second_image = req.body.second_image;
-  console.log("first_image", first_image);
-  console.log("second_image", second_image);
+  new formidable.IncomingForm().parse(req, (err, fields, files) => {
+    if (err) {
+      console.error('Error', err)
+      throw err
+    }
+    console.log('Fields', fields)
+    console.log('Files', files)
+    files.map(file => {
+      console.log(file)
+    })
+  })
   //do sth
   var response;
   response.message = "Successfully";
