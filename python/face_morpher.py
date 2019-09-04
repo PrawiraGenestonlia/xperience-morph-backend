@@ -164,5 +164,6 @@ def main(file1,file2):
     img_morphed = morph_faces(file1, file2, alpha)    
     output_file = 'output.jpg'
     cv2.imwrite(output_file, img_morphed)
+    print("Done morphing")
     return output_file
 
