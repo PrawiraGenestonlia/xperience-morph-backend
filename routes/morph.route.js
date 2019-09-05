@@ -3,7 +3,19 @@ const router = express.Router();
 const formidable = require('formidable');
 const util = require('util')
 const fs = require('fs');
+var multer = require('multer');
 const spawnMorpher = require('../python/spawnMorpher');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname);
+  }
+});
+
+var upload = multer({ storage: storage }).array('userPhoto', 2);
 
 router.get("/", async (req, res) => {
   res.status(200).send({ status: "alive" });
@@ -23,23 +35,21 @@ router.get("/test", async (req, res) => {
   });
 });
 
+router.post("/testpost"), async (req, res) => {
+  res.status(200).send({ "text-received": req.body });
+}
+
 router.post("/combine"), async (req, res) => {
-  // new formidable.IncomingForm().parse(req, (err, fields, files) => {
-  //   if (err) {
-  //     console.error('Error', err)
-  //     throw err
-  //   }
-  //   console.log('Fields', fields)
-  //   console.log('Files', files)
-  //   files.map(file => {
-  //     console.log(file)
-  //   })
-  // })
-  //do sth
-  // var response;
-  // response.message = "Successfully";
+  upload(req, res, function (err) {
+    //console.log(req.body);
+    //console.log(req.files);
+    if (err) {
+      return res.end("Error uploading file.");
+    }
+    res.status(200).send({ images: "uploaded" });
+  });
   //node-readability
-  res.status(200).send({ images: "sent" });
+  // res.status(200).send({ images: "sent" });
 }
 
 module.exports = router; 
