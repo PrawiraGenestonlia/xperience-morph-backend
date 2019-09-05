@@ -23,7 +23,8 @@ if (!config.get("myprivatekey")) {
 //   .catch(err => console.error("Could not connect to MongoDB..."));
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 // app.use(express.json());
 
 app.use("/status", (req, res) => {
